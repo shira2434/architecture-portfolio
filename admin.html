@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Studio Admin</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="admin.css" />
+</head>
+<body>
+
+  <div class="sidebar">
+    <div class="sidebar-logo">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+        <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" fill="#c8a96e" opacity="0.2" stroke="#c8a96e" stroke-width="1.2"/>
+        <polyline points="9 22 9 12 15 12 15 22" stroke="#c8a96e" stroke-width="1.2" fill="none"/>
+      </svg>
+      <div>
+        <div class="logo-title">STUDIO</div>
+        <div class="logo-sub">ממשק ניהול</div>
+      </div>
+    </div>
+
+    <nav class="sidebar-nav">
+      <div class="nav-label">ניהול</div>
+      <a href="#" class="nav-item active" data-view="projects" data-title="פרויקטים">
+        <svg width="13" height="13" viewBox="0 0 20 20" fill="none"><rect x="2" y="2" width="7" height="7" stroke="currentColor" stroke-width="1.3"/><rect x="11" y="2" width="7" height="7" stroke="currentColor" stroke-width="1.3"/><rect x="2" y="11" width="7" height="7" stroke="currentColor" stroke-width="1.3"/><rect x="11" y="11" width="7" height="7" stroke="currentColor" stroke-width="1.3"/></svg>
+        <span>פרויקטים</span>
+        <em class="nav-badge" id="navBadge">0</em>
+      </a>
+      <a href="#" class="nav-item" data-view="add" data-title="פרויקט חדש">
+        <svg width="13" height="13" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="8" stroke="currentColor" stroke-width="1.3"/><line x1="10" y1="6" x2="10" y2="14" stroke="currentColor" stroke-width="1.3"/><line x1="6" y1="10" x2="14" y2="10" stroke="currentColor" stroke-width="1.3"/></svg>
+        <span>פרויקט חדש</span>
+      </a>
+      <div class="nav-label" style="margin-top:8px">עיצוב</div>
+      <a href="#" class="nav-item" data-view="site" data-title="עיצוב האתר">
+        <svg width="13" height="13" viewBox="0 0 20 20" fill="none"><rect x="2" y="2" width="16" height="12" stroke="currentColor" stroke-width="1.3"/><line x1="2" y1="7" x2="18" y2="7" stroke="currentColor" stroke-width="1.3"/><line x1="6" y1="2" x2="6" y2="7" stroke="currentColor" stroke-width="1.3"/></svg>
+        <span>עיצוב האתר</span>
+      </a>
+      <div class="nav-label" style="margin-top:8px">כלים</div>
+      <a href="#" class="nav-item" data-view="preview" data-title="תצוגה מקדימה">
+        <svg width="13" height="13" viewBox="0 0 20 20" fill="none"><path d="M1 10s3-7 9-7 9 7 9 7-3 7-9 7-9-7-9-7z" stroke="currentColor" stroke-width="1.3"/><circle cx="10" cy="10" r="3" stroke="currentColor" stroke-width="1.3"/></svg>
+        <span>תצוגה מקדימה</span>
+      </a>
+      <a href="#" class="nav-item" data-view="editor" data-title="עריכת חיה">
+        <svg width="13" height="13" viewBox="0 0 20 20" fill="none"><path d="M14 2l4 4-10 10H4v-4L14 2z" stroke="currentColor" stroke-width="1.3" fill="none"/></svg>
+        <span>עריכת חיה</span>
+      </a>
+      <a href="#" class="nav-item" data-view="backup" data-title="גיבוי ושחזור">
+        <svg width="13" height="13" viewBox="0 0 20 20" fill="none"><path d="M3 10a7 7 0 1 0 7-7" stroke="currentColor" stroke-width="1.3"/><path d="M3 6v4h4" stroke="currentColor" stroke-width="1.3"/></svg>
+        <span>גיבוי ושחזור</span>
+      </a>
+      <div class="nav-label" style="margin-top:8px">מערכת</div>
+      <a href="#" class="nav-item" data-view="settings" data-title="הגדרות">
+        <svg width="13" height="13" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="3" stroke="currentColor" stroke-width="1.3"/><path d="M10 2v2M10 16v2M2 10h2M16 10h2" stroke="currentColor" stroke-width="1.3"/></svg>
+        <span>הגדרות</span>
+      </a>
+    </nav>
+
+    <div class="sidebar-footer">
+      <a href="index.html" target="_blank" class="sidebar-link">
+        <svg width="11" height="11" viewBox="0 0 16 16" fill="none"><path d="M6 3H3v10h10v-3M9 2h5v5M14 2L8 8" stroke="currentColor" stroke-width="1.2"/></svg>
+        צפה באתר
+      </a>
+      <button class="logout-btn" onclick="logout()">
+        <svg width="11" height="11" viewBox="0 0 16 16" fill="none"><path d="M6 2H2v12h4M10 5l4 3-4 3M6 8h8" stroke="currentColor" stroke-width="1.2"/></svg>
+        יציאה
+      </button>
+    </div>
+  </div>
+
+  <main class="main">
+
+    <div class="topbar">
+      <div>
+        <div class="topbar-title" id="topbarTitle">פרויקטים</div>
+        <div class="topbar-crumb">Admin › <span id="breadcrumb">פרויקטים</span></div>
+      </div>
+      <div class="topbar-right">
+        <button id="sidebarToggle" style="display:none;background:none;border:1px solid rgba(200,169,110,0.2);color:#c8a96e;padding:5px 10px;cursor:pointer;font-size:16px;line-height:1" onclick="document.querySelector('.sidebar').classList.toggle('open')">☰</button>
+        <div class="stat-pill"><span id="statCount">0</span> פרויקטים</div>
+        <div class="stat-pill gold"><span id="statImages">0</span> תמונות</div>
+        <div class="avatar">A</div>
+      </div>
+    </div>
+
+    <!-- PROJECTS -->
+    <div class="view active" id="view-projects">
+      <div class="toolbar">
+        <div class="search-box">
+          <svg width="11" height="11" viewBox="0 0 16 16" fill="none"><circle cx="6.5" cy="6.5" r="4.5" stroke="currentColor" stroke-width="1.3"/><line x1="10" y1="10" x2="14" y2="14" stroke="currentColor" stroke-width="1.3"/></svg>
+          <input type="text" id="searchInput" placeholder="חיפוש..." />
+        </div>
+        <div class="filters">
+          <button class="chip active" data-cat="all">הכל</button>
+          <button class="chip" data-cat="residential">מגורים</button>
+          <button class="chip" data-cat="public">ציבורי</button>
+          <button class="chip" data-cat="interior">פנים</button>
+          <button class="chip" data-cat="urban">עירוני</button>
+        </div>
+        <button class="btn-new" onclick="goAdd()">+ חדש</button>
+      </div>
+      <div class="admin-grid" id="adminGrid"></div>
+    </div>
+
+    <!-- ADD / EDIT -->
+    <div class="view" id="view-add">
+      <div class="form-layout">
+        <div class="form-aside">
+          <div class="preview-box" id="formPreviewBox">
+            <div class="preview-empty">
+              <svg width="28" height="28" viewBox="0 0 40 40" fill="none"><rect x="4" y="4" width="32" height="32" stroke="#c8a96e" stroke-width="0.8" opacity="0.4"/><path d="M4 28l8-8 6 6 6-8 12 10" stroke="#c8a96e" stroke-width="0.8" opacity="0.4"/></svg>
+              <span>תצוגה מקדימה</span>
+            </div>
+          </div>
+          <div class="aside-tips">
+            <div>✓ 1200×800px מומלץ</div>
+            <div>✓ JPG / PNG / WEBP</div>
+            <div>✓ עד 10MB</div>
+          </div>
+        </div>
+
+        <div class="form-card">
+          <div class="form-card-head">
+            <h2 id="formTitle">פרויקט חדש</h2>
+            <div class="form-line"></div>
+          </div>
+          <form id="projectForm" novalidate>
+            <input type="hidden" id="editId" />
+
+            <div class="sec-label">פרטים</div>
+            <div class="fg">
+              <div class="ff span2">
+                <label>שם הפרויקט <span class="req">*</span></label>
+                <input type="text" id="fTitle" placeholder="בית פרטי בשרון" />
+                <div class="ferr" id="err-title"></div>
+              </div>
+              <div class="ff">
+                <label>קטגוריה</label>
+                <select id="fCategory">
+                  <option value="residential">מגורים</option>
+                  <option value="public">ציבורי</option>
+                  <option value="interior">פנים</option>
+                  <option value="urban">עירוני</option>
+                </select>
+              </div>
+              <div class="ff">
+                <label>מיקום</label>
+                <input type="text" id="fLocation" placeholder="תל אביב" />
+              </div>
+              <div class="ff">
+                <label>שנה</label>
+                <input type="text" id="fYear" placeholder="2024" />
+              </div>
+              <div class="ff">
+                <label>שטח</label>
+                <input type="text" id="fArea" placeholder="200 מ״ר" />
+              </div>
+            </div>
+
+            <div class="sec-label" style="margin-top:14px">תוכן</div>
+            <div class="fg">
+              <div class="ff span2">
+                <label>תיאור</label>
+                <textarea id="fDesc" rows="3" placeholder="תיאור הפרויקט..."></textarea>
+              </div>
+              <div class="ff span2">
+                <label>שירותים <small>(מופרדים בפסיק)</small></label>
+                <input type="text" id="fDetails" placeholder="תכנון אדריכלי, פיקוח עליון" />
+              </div>
+            </div>
+
+            <div class="sec-label" style="margin-top:14px">תמונה</div>
+            <div class="ff span2" style="margin-bottom:6px">
+              <label>URL תמונה (אופציונלי)</label>
+              <input type="text" id="fImageUrl" placeholder="https://images.unsplash.com/..." />
+            </div>
+            <div class="upload-zone" id="uploadZone" style="cursor:pointer">
+              <input type="file" id="fImage" accept="image/*" style="display:none" />
+              <svg width="22" height="22" viewBox="0 0 40 40" fill="none"><path d="M20 28V12M13 19l7-7 7 7" stroke="#c8a96e" stroke-width="1.5"/><path d="M8 32h24" stroke="#c8a96e" stroke-width="1" opacity="0.4"/></svg>
+              <p>גרור תמונה או לחץ לבחירה</p>
+            </div>
+            <div class="img-preview" id="imagePreviewWrap">
+              <img id="imagePreview" src="" alt="" />
+              <div class="img-overlay">
+                <button type="button" id="removeImg">✕ הסר</button>
+              </div>
+            </div>
+
+            <div class="form-actions">
+              <button type="submit" class="btn-save" id="submitBtn">✓ שמור פרויקט</button>
+              <button type="button" class="btn-cancel" onclick="cancelEdit()">ביטול</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <!-- SITE EDITOR -->
+    <div class="view" id="view-site">
+      <div class="settings-grid" style="grid-template-columns:1fr 1fr;gap:16px">
+
+        <!-- HERO -->
+        <div class="scard" style="grid-column:span 2">
+          <div class="scard-title">🏗 אזור הפתיחה (Hero)</div>
+          <div class="fg">
+            <div class="ff"><label>שורה 1</label><input type="text" id="sHeroLine1" placeholder="אדריכלות" /></div>
+            <div class="ff"><label>שורה 2 (זהב)</label><input type="text" id="sHeroLine2" placeholder="שמספרת" /></div>
+            <div class="ff"><label>שורה 3</label><input type="text" id="sHeroLine3" placeholder="סיפור" /></div>
+            <div class="ff"><label>תת כותרת</label><input type="text" id="sHeroSub" placeholder="עיצוב שמשלב..." /></div>
+            <div class="ff"><label>תווית קטן</label><input type="text" id="sHeroLabel" placeholder="תיק עבודות · 2025" /></div>
+            <div class="ff"><label>כפתור ראשי</label><input type="text" id="sHeroBtn1" placeholder="צפה בפרויקטים" /></div>
+            <div class="ff"><label>כפתור משני</label><input type="text" id="sHeroBtn2" placeholder="אודות" /></div>
+            <div class="ff"><label>URL תמונת רקע</label><input type="text" id="sHeroImg" placeholder="https://..." /></div>
+          </div>
+        </div>
+
+        <!-- COUNTERS -->
+        <div class="scard">
+          <div class="scard-title">🔢 מונים</div>
+          <div class="ff"><label>מונה 1 — ספרה</label><input type="number" id="sCounter1Val" placeholder="24" /></div>
+          <div class="ff"><label>מונה 1 — תווית</label><input type="text" id="sCounter1Label" placeholder="פרויקטים" /></div>
+          <div class="ff"><label>מונה 2 — ספרה</label><input type="number" id="sCounter2Val" placeholder="8" /></div>
+          <div class="ff"><label>מונה 2 — תווית</label><input type="text" id="sCounter2Label" placeholder="שנות ניסיון" /></div>
+          <div class="ff"><label>מונה 3 — ספרה</label><input type="number" id="sCounter3Val" placeholder="12" /></div>
+          <div class="ff"><label>מונה 3 — תווית</label><input type="text" id="sCounter3Label" placeholder="פרסים" /></div>
+        </div>
+
+        <!-- LOGO -->
+        <div class="scard">
+          <div class="scard-title">🏷 לוגו וכותרת</div>
+          <div class="ff"><label>שם בלוגו</label><input type="text" id="sLogoName" placeholder="אביטל" /></div>
+          <div class="ff"><label>כתובת לוגו</label><input type="text" id="sLogoSub" placeholder="ARCHITECTURE" /></div>
+          <div class="ff"><label>כותרת דף (tab)</label><input type="text" id="sSiteTitle" placeholder="אביטל | אדריכלות" /></div>
+          <div class="ff"><label>פוטר</label><input type="text" id="sFooterLogo" placeholder="אביטל | ARCHITECTURE" /></div>
+          <div class="ff"><label>זכויות (פוטר)</label><input type="text" id="sFooterCopy" placeholder="© 2025 כל הזכויות שמורות" /></div>
+        </div>
+
+        <!-- ABOUT -->
+        <div class="scard" style="grid-column:span 2">
+          <div class="scard-title">👤 אודות</div>
+          <div class="fg">
+            <div class="ff"><label>כותרת</label><input type="text" id="sAboutTitle" placeholder="גישה אדריכלית" /></div>
+            <div class="ff"><label>כותרת טקסט (זהב)</label><input type="text" id="sAboutTitleEm" placeholder="שמאמינה בפרטים" /></div>
+            <div class="ff span2"><label>פסקה 1</label><textarea id="sAboutP1" rows="2" placeholder="אדריכלית עם ניסיון..."></textarea></div>
+            <div class="ff span2"><label>פסקה 2</label><textarea id="sAboutP2" rows="2" placeholder="כל פרויקט..."></textarea></div>
+            <div class="ff"><label>תג הנסיון (מספר)</label><input type="text" id="sAboutBadgeNum" placeholder="8+" /></div>
+            <div class="ff"><label>תג הנסיון (טקסט)</label><input type="text" id="sAboutBadgeText" placeholder="שנות ניסיון" /></div>
+            <div class="ff span2"><label>URL תמונת אודות</label><input type="text" id="sAboutImg" placeholder="https://..." /></div>
+            <div class="ff span2"><label>כישורים (מופרדים בפסיק)</label><input type="text" id="sSkills" placeholder="AutoCAD, Revit, SketchUp" /></div>
+          </div>
+        </div>
+
+        <!-- CONTACT -->
+        <div class="scard" style="grid-column:span 2">
+          <div class="scard-title">📧 צור קשר</div>
+          <div class="fg">
+            <div class="ff"><label>כותרת</label><input type="text" id="sContactTitle" placeholder="מוכנים" /></div>
+            <div class="ff"><label>כותרת טקסט (זהב)</label><input type="text" id="sContactTitleEm" placeholder="להתחיל?" /></div>
+            <div class="ff span2"><label>תת כותרת</label><input type="text" id="sContactSub" placeholder="מעוניינים בשיתוף פעולה?..." /></div>
+            <div class="ff"><label>אימייל</label><input type="email" id="sContactEmail" placeholder="studio@example.com" /></div>
+            <div class="ff"><label>טלפון</label><input type="text" id="sPhone" placeholder="050-0000000" /></div>
+            <div class="ff span2"><label>כתובת</label><input type="text" id="sAddress" placeholder="תל אביב, ישראל" /></div>
+            <div class="ff span2"><label>רשתות חברתיות (Instagram, Facebook, LinkedIn — מופרדים בפסיק)</label><input type="text" id="sSocial" placeholder="https://instagram.com/..., https://linkedin.com/..." /></div>
+          </div>
+        </div>
+
+        <!-- SERVICES -->
+        <div class="scard" style="grid-column:span 2">
+          <div class="scard-title">🔧 שירותים</div>
+          <div class="fg">
+            <div class="ff"><label>שירות 1 — כותרת</label><input type="text" id="sSrv1Title" placeholder="תכנון אדריכלי" /></div>
+            <div class="ff"><label>שירות 1 — תיאור</label><input type="text" id="sSrv1Desc" placeholder="תכנון מלא מהרעיון ועד הביצוע..." /></div>
+            <div class="ff"><label>שירות 2 — כותרת</label><input type="text" id="sSrv2Title" placeholder="עיצוב פנים" /></div>
+            <div class="ff"><label>שירות 2 — תיאור</label><input type="text" id="sSrv2Desc" placeholder="עיצוב מרחבים פנימיים..." /></div>
+            <div class="ff"><label>שירות 3 — כותרת</label><input type="text" id="sSrv3Title" placeholder="פיקוח עליון" /></div>
+            <div class="ff"><label>שירות 3 — תיאור</label><input type="text" id="sSrv3Desc" placeholder="ליווי צמוד בשלב הביצוע..." /></div>
+            <div class="ff"><label>שירות 4 — כותרת</label><input type="text" id="sSrv4Title" placeholder="תכנון עירוני" /></div>
+            <div class="ff"><label>שירות 4 — תיאור</label><input type="text" id="sSrv4Desc" placeholder="תכנון מתחמים ושכונות..." /></div>
+          </div>
+        </div>
+
+        <!-- TESTIMONIALS -->
+        <div class="scard" style="grid-column:span 2">
+          <div class="scard-title">💬 המלצות</div>
+          <div class="fg">
+            <div class="ff"><label>המלצה 1 — טקסט</label><textarea id="sTest1Text" rows="2" placeholder="אביטל הפכה את החלום שלנו לבית אמיתי..."></textarea></div>
+            <div class="ff"><label>המלצה 1 — שם</label><input type="text" id="sTest1Name" placeholder="משפחת כהן" /></div>
+            <div class="ff"><label>המלצה 1 — תפקיד/מיקום</label><input type="text" id="sTest1Role" placeholder="בית פרטי, הרצליה" /></div>
+            <div class="ff"><label>המלצה 2 — טקסט</label><textarea id="sTest2Text" rows="2" placeholder="עיצוב הפנים שקיבלנו עלה על כל הציפיות..."></textarea></div>
+            <div class="ff"><label>המלצה 2 — שם</label><input type="text" id="sTest2Name" placeholder="דנה לוי" /></div>
+            <div class="ff"><label>המלצה 2 — תפקיד/מיקום</label><input type="text" id="sTest2Role" placeholder="דירה בתל אביב" /></div>
+            <div class="ff"><label>המלצה 3 — טקסט</label><textarea id="sTest3Text" rows="2" placeholder="שיתוף הפעולה עם הסטודיו היה חוויה מדהימה..."></textarea></div>
+            <div class="ff"><label>המלצה 3 — שם</label><input type="text" id="sTest3Name" placeholder="אלון ברק" /></div>
+            <div class="ff"><label>המלצה 3 — תפקיד/מיקום</label><input type="text" id="sTest3Role" placeholder="מרכז קהילתי, תל אביב" /></div>
+          </div>
+        </div>
+
+        <!-- MARQUEE & STRIP -->
+        <div class="scard">
+          <div class="scard-title">📜 פס גולל (Marquee)</div>
+          <div class="ff"><label>טקסטים (מופרדים בפסיק)</label><textarea id="sMarquee" rows="3" placeholder="אדריכלות, עיצוב פנים, תכנון עירוני, ARCHITECTURE"></textarea></div>
+        </div>
+
+        <div class="scard">
+          <div class="scard-title">🖼 סטריפ תמונות</div>
+          <div class="ff"><label>תמונה 1 — URL</label><input type="text" id="sStrip1" placeholder="https://..." /></div>
+          <div class="ff"><label>תמונה 2 — URL</label><input type="text" id="sStrip2" placeholder="https://..." /></div>
+          <div class="ff"><label>תמונה 3 — URL</label><input type="text" id="sStrip3" placeholder="https://..." /></div>
+          <div class="ff"><label>תמונה 4 — URL</label><input type="text" id="sStrip4" placeholder="https://..." /></div>
+          <div class="ff"><label>תמונה 5 — URL</label><input type="text" id="sStrip5" placeholder="https://..." /></div>
+        </div>
+
+        <!-- CHATBOT -->
+        <div class="scard" style="grid-column:span 2">
+          <div class="scard-title">🤖 צאטבוט</div>
+          <div class="fg">
+            <div class="ff"><label>שם הצאטבוט</label><input type="text" id="sChatName" placeholder="אביטל — עוזרת וירטואלית" /></div>
+            <div class="ff"><label>הודעת פתיחה</label><input type="text" id="sChatGreeting" placeholder="שלום! איך אוכל לעזור?" /></div>
+            <div class="ff span2"><label>תשובות אוטומטיות (JSON)</label><textarea id="sChatAnswers" rows="4" placeholder='{"שירותים":"אנו מציעים תכנון אדריכלי, עיצוב פנים ופיקוח","מחיר":"המחיר תלוי בגודל הפרויקט, צרו קשר לפרטים"}'></textarea></div>
+          </div>
+        </div>
+
+        <div style="grid-column:span 2;display:flex;gap:8px;justify-content:flex-end">
+          <button class="btn-save" onclick="saveSiteSettings()">✓ שמור את כל השינויים</button>
+        </div>
+        <div class="smsg" id="siteMsg" style="grid-column:span 2;text-align:left"></div>
+
+      </div>
+    </div>
+
+    <!-- EDITOR -->
+    <div class="view" id="view-editor">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px">
+        <span style="font-size:11px;color:var(--m);letter-spacing:1px">עריכת חיה פותחת את האתר בטאב חדש במצב עריכה</span>
+        <button class="btn-save" onclick="openLiveEditor()">✎ פתח עריכת חיה</button>
+      </div>
+      <div class="scard" style="gap:10px">
+        <div class="scard-title">איך זה עובד?</div>
+        <div style="display:flex;flex-direction:column;gap:8px;font-size:11px;color:var(--m);line-height:1.8">
+          <span>▶ לחץ על כפתור לעיל — האתר נפתח בטאב חדש עם סרגל עריכה למעלה</span>
+          <span>▶ לחץ על כל טקסט באתר כדי לערוך אותו ישירות</span>
+          <span>▶ לחץ על תמונה כדי להחליף אותה</span>
+          <span>▶ לחץ “שמור” כדי שהשינויים יופיעו בכל טעינה</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- PREVIEW -->
+    <div class="view" id="view-preview">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px">
+        <span style="font-size:11px;color:var(--m);letter-spacing:1px">תצוגה חיה של האתר</span>
+        <a href="index.html" target="_blank" class="btn-save" style="text-decoration:none;font-size:10px;padding:6px 14px">פתח בטאב חדש ↗</a>
+      </div>
+      <iframe src="index.html" style="width:100%;height:calc(100vh - 120px);border:1px solid rgba(200,169,110,0.1);background:#fff"></iframe>
+    </div>
+
+    <!-- BACKUP -->
+    <div class="view" id="view-backup">
+      <div class="settings-grid" style="grid-template-columns:1fr 1fr;gap:16px">
+        <div class="scard">
+          <div class="scard-title">📤 ייצוא נתונים</div>
+          <p style="font-size:11px;color:var(--m);line-height:1.7;margin-bottom:12px">ייצא את כל הפרויקטים והגדרות האתר כקובץ JSON לגיבוי.</p>
+          <button class="btn-save" style="width:100%" onclick="exportData()">&#8595; ייצא גיבוי</button>
+        </div>
+        <div class="scard">
+          <div class="scard-title">📥 ייבוא נתונים</div>
+          <p style="font-size:11px;color:var(--m);line-height:1.7;margin-bottom:12px">טען קובץ JSON שייוצא קודם לשחזור את כל הנתונים.</p>
+          <label class="btn-save" style="width:100%;display:flex;align-items:center;justify-content:center;cursor:pointer">
+            &#8593; טען קובץ
+            <input type="file" id="importFile" accept=".json" style="display:none" onchange="importData(event)" />
+          </label>
+          <div class="smsg" id="importMsg" style="margin-top:8px"></div>
+        </div>
+        <div class="scard" style="grid-column:span 2">
+          <div class="scard-title">📊 סטטיסטיקות</div>
+          <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:4px" id="statsGrid"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SETTINGS -->
+    <div class="view" id="view-settings">
+      <div class="settings-grid">
+        <div class="scard">
+          <div class="scard-title">פרטי הסטודיו</div>
+          <div class="ff"><label>שם</label><input type="text" id="sName" placeholder="אביטל" /></div>
+          <div class="ff"><label>כותרת משנה</label><input type="text" id="sTagline" placeholder="עיצוב אדריכלי..." /></div>
+          <div class="ff"><label>אימייל</label><input type="email" id="sEmail" placeholder="studio@example.com" /></div>
+          <button class="btn-save" style="width:100%;margin-top:10px" onclick="saveSettings()">שמור</button>
+          <div class="smsg" id="settingsMsg"></div>
+        </div>
+        <div class="scard">
+          <div class="scard-title">שינוי סיסמה</div>
+          <div class="ff"><label>סיסמה נוכחית</label><input type="password" id="sPassOld" placeholder="••••••••" /></div>
+          <div class="ff"><label>סיסמה חדשה</label><input type="password" id="sPass" placeholder="••••••••" /></div>
+          <div class="ff"><label>אימות</label><input type="password" id="sPassConfirm" placeholder="••••••••" /></div>
+          <button class="btn-save" style="width:100%;margin-top:10px" onclick="changePassword()">עדכן סיסמה</button>
+          <div class="smsg" id="passMsg"></div>
+        </div>
+        <div class="scard danger-card">
+          <div class="scard-title">אזור מסוכן</div>
+          <p>ניקוי תמונות מועלות (base64) משחרר מקום באחסון ומתקן את בעיית השמירה.</p>
+          <button class="btn-danger-out" style="margin-bottom:10px" onclick="clearBase64Images()">נקה תמונות מועלות</button>
+          <p style="margin-top:4px">מחיקת כל הפרויקטים תאפס את המערכת. פעולה זו אינה הפיכה.</p>
+          <button class="btn-danger-out" onclick="confirmResetAll()">איפוס כל הפרויקטים</button>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <div class="toast" id="toast"></div>
+
+  <div class="confirm-overlay" id="confirmOverlay">
+    <div class="confirm-box">
+      <svg width="32" height="32" viewBox="0 0 40 40" fill="none" style="margin-bottom:10px"><circle cx="20" cy="20" r="18" stroke="#d94f4f" stroke-width="1"/><line x1="20" y1="12" x2="20" y2="22" stroke="#d94f4f" stroke-width="2"/><circle cx="20" cy="28" r="1.5" fill="#d94f4f"/></svg>
+      <h3 id="confirmTitle">מחיקת פרויקט</h3>
+      <p id="confirmText">האם למחוק? פעולה זו אינה הפיכה.</p>
+      <div class="confirm-btns">
+        <button class="btn-danger" id="confirmOk">מחק</button>
+        <button class="btn-cancel" onclick="closeConfirm()">ביטול</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="imgdb.js"></script>
+  <script src="admin.js"></script>
+</body>
+</html>

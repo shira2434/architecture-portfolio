@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title id="siteTitle">אביטל | אדריכלות ועיצוב</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=Inter:wght@200;300;400&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <div class="cursor" id="cursor"></div>
+  <div class="cursor-follower" id="cursorFollower"></div>
+
+  <div class="loader" id="loader">
+    <div class="loader-inner">
+      <svg viewBox="0 0 60 60"><rect x="5" y="5" width="50" height="50" fill="none" stroke="#c8a96e" stroke-width="0.5" class="loader-rect"/></svg>
+      <span class="loader-text">LOADING</span>
+    </div>
+  </div>
+
+  <header id="header">
+    <nav>
+      <div class="logo">
+        <span class="logo-heb" id="logoName">אביטל</span>
+        <span class="logo-sep">|</span>
+        <span class="logo-en" id="logoSub">ARCHITECTURE</span>
+      </div>
+      <ul>
+        <li><a href="#projects" data-text="פרויקטים">פרויקטים</a></li>
+        <li><a href="#about" data-text="אודות">אודות</a></li>
+        <li><a href="#contact" data-text="צור קשר">צור קשר</a></li>
+        <li><a href="admin-login.html" class="nav-admin">⬡ ניהול</a></li>
+      </ul>
+      <div class="menu-toggle" id="menuToggle"><span></span><span></span><span></span></div>
+    </nav>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero" id="hero">
+    <div class="hero-bg">
+      <div class="hero-img-wrap">
+        <img id="heroImg" src="https://images.unsplash.com/photo-1487958449943-2429e8be8625?w=1800&q=80" alt="hero" class="hero-img" />
+        <div class="hero-overlay"></div>
+      </div>
+    </div>
+    <canvas class="hero-particles" id="heroParticles"></canvas>
+    <div class="hero-content">
+      <div class="hero-label" id="heroLabel">תיק עבודות · 2025</div>
+      <h1 class="hero-title">
+        <span class="line" id="heroLine1">אדריכלות</span>
+        <span class="line accent-line" id="heroLine2">שמספרת</span>
+        <span class="line" id="heroLine3">סיפור</span>
+      </h1>
+      <p class="hero-sub" id="heroSub">עיצוב שמשלב פונקציונליות, אסתטיקה ותרבות מקום</p>
+      <div class="hero-actions">
+        <a href="#projects" class="btn btn-gold" id="heroBtnPrimary">צפה בפרויקטים</a>
+        <a href="#about" class="btn btn-outline" id="heroBtnSecondary">אודות</a>
+      </div>
+    </div>
+    <div class="hero-scroll"><div class="scroll-line"></div><span>גלול</span></div>
+    <div class="hero-counter">
+      <div class="counter-item">
+        <span class="count-num" id="counter1" data-target="24">0</span>
+        <small id="counter1Label">פרויקטים</small>
+      </div>
+      <div class="counter-divider"></div>
+      <div class="counter-item">
+        <span class="count-num" id="counter2" data-target="8">0</span>
+        <small id="counter2Label">שנות ניסיון</small>
+      </div>
+      <div class="counter-divider"></div>
+      <div class="counter-item">
+        <span class="count-num" id="counter3" data-target="12">0</span>
+        <small id="counter3Label">פרסים</small>
+      </div>
+    </div>
+  </section>
+
+  <!-- MARQUEE -->
+  <div class="marquee-wrap">
+    <div class="marquee-track" id="marqueeTrack">
+      <span>אדריכלות</span><span>·</span>
+      <span>עיצוב פנים</span><span>·</span>
+      <span>תכנון עירוני</span><span>·</span>
+      <span>ARCHITECTURE</span><span>·</span>
+      <span>INTERIOR DESIGN</span><span>·</span>
+      <span>URBAN PLANNING</span><span>·</span>
+      <span>אדריכלות</span><span>·</span>
+      <span>עיצוב פנים</span><span>·</span>
+      <span>תכנון עירוני</span><span>·</span>
+      <span>ARCHITECTURE</span><span>·</span>
+      <span>INTERIOR DESIGN</span><span>·</span>
+      <span>URBAN PLANNING</span><span>·</span>
+    </div>
+  </div>
+
+  <!-- PROJECTS -->
+  <section id="projects" class="projects-section">
+    <div class="section-header">
+      <div class="section-label" id="projectsSectionLabel">01 — פרויקטים</div>
+      <h2 class="section-title" id="projectsSectionTitle">עבודות נבחרות</h2>
+    </div>
+    <div class="filter-bar">
+      <button class="filter-btn active" data-filter="all">הכל</button>
+      <button class="filter-btn" data-filter="residential">מגורים</button>
+      <button class="filter-btn" data-filter="public">ציבורי</button>
+      <button class="filter-btn" data-filter="interior">פנים</button>
+      <button class="filter-btn" data-filter="urban">עירוני</button>
+    </div>
+    <div class="projects-grid" id="projectsGrid"></div>
+  </section>
+
+  <!-- MODAL -->
+  <div class="modal" id="modal">
+    <div class="modal-overlay" id="modalOverlay"></div>
+    <div class="modal-content">
+      <button class="modal-close" id="modalClose"><span></span><span></span></button>
+      <div class="modal-body">
+        <div class="modal-image-wrap" id="modalImageWrap">
+          <img id="modalImg" src="" alt="" />
+          <div class="modal-img-overlay"></div>
+        </div>
+        <div class="modal-info">
+          <span class="modal-tag" id="modalTag"></span>
+          <h2 id="modalTitle"></h2>
+          <p class="modal-meta" id="modalMeta"></p>
+          <div class="modal-divider"></div>
+          <p class="modal-desc" id="modalDesc"></p>
+          <ul class="modal-details" id="modalDetails"></ul>
+          <div class="modal-nav">
+            <button class="modal-prev" id="modalPrev">← הקודם</button>
+            <button class="modal-share" id="modalShare">שתף</button>
+            <button class="modal-next" id="modalNext">הבא →</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ABOUT -->
+  <section id="about" class="about-section">
+    <div class="about-bg-text" id="aboutBgText">ARCHITECTURE</div>
+    <div class="about-inner">
+      <div class="about-image-col reveal-right">
+        <div class="about-img-frame">
+          <img id="aboutImg" src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=800&q=80" alt="studio" class="about-img" />
+          <div class="about-img-accent"></div>
+        </div>
+        <div class="about-badge">
+          <span class="badge-num" id="aboutBadgeNum">8+</span>
+          <span class="badge-text" id="aboutBadgeText">שנות ניסיון</span>
+        </div>
+      </div>
+      <div class="about-text reveal-left">
+        <div class="section-label" id="aboutSectionLabel">02 — אודות</div>
+        <h2 id="aboutTitle">גישה אדריכלית<br/><em>שמאמינה בפרטים</em></h2>
+        <p id="aboutPara1">אדריכלית עם ניסיון בתכנון מגורים, מבנים ציבוריים ועיצוב פנים. הגישה שלי משלבת חשיבה מרחבית עמוקה עם רגישות לסביבה, לאנשים ולתרבות המקום.</p>
+        <p id="aboutPara2">כל פרויקט הוא שיחה בין הצורך האנושי לבין האפשרות האדריכלית — מחפשת תמיד את הפתרון שמרגיש הכרחי ולא מקרי.</p>
+        <div class="skills" id="skillsList">
+          <span>AutoCAD</span><span>Revit</span><span>SketchUp</span>
+          <span>Rhino</span><span>Lumion</span><span>Adobe Suite</span>
+        </div>
+        <a href="#contact" class="btn btn-dark" id="aboutBtn">בואו נדבר</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section class="services-section" id="services">
+    <div class="services-inner">
+      <div class="section-header reveal">
+        <div class="section-label">03 — שירותים</div>
+        <h2 class="section-title">מה אנחנו מציעים</h2>
+      </div>
+      <div class="services-grid">
+        <div class="service-card reveal">
+          <div class="service-icon">
+            <svg width="32" height="32" viewBox="0 0 40 40" fill="none"><rect x="4" y="4" width="32" height="32" stroke="#c8a96e" stroke-width="1"/><line x1="4" y1="14" x2="36" y2="14" stroke="#c8a96e" stroke-width="0.8"/><line x1="14" y1="4" x2="14" y2="36" stroke="#c8a96e" stroke-width="0.8"/></svg>
+          </div>
+          <h3 id="srv1Title">תכנון אדריכלי</h3>
+          <p id="srv1Desc">תכנון מלא מהרעיון ועד הביצוע — תוכניות, חזיתות, חתכים ופרטים טכניים.</p>
+          <div class="service-num">01</div>
+        </div>
+        <div class="service-card reveal">
+          <div class="service-icon">
+            <svg width="32" height="32" viewBox="0 0 40 40" fill="none"><circle cx="20" cy="20" r="14" stroke="#c8a96e" stroke-width="1"/><path d="M12 20h16M20 12v16" stroke="#c8a96e" stroke-width="0.8"/></svg>
+          </div>
+          <h3 id="srv2Title">עיצוב פנים</h3>
+          <p id="srv2Desc">עיצוב מרחבים פנימיים עם תשומת לב לחומרים, תאורה ואווירה.</p>
+          <div class="service-num">02</div>
+        </div>
+        <div class="service-card reveal">
+          <div class="service-icon">
+            <svg width="32" height="32" viewBox="0 0 40 40" fill="none"><path d="M4 32L14 12l8 12 6-8 8 16" stroke="#c8a96e" stroke-width="1" fill="none"/></svg>
+          </div>
+          <h3 id="srv3Title">פיקוח עליון</h3>
+          <p id="srv3Desc">ליווי צמוד בשלב הביצוע להבטחת איכות ועמידה בתכנון המקורי.</p>
+          <div class="service-num">03</div>
+        </div>
+        <div class="service-card reveal">
+          <div class="service-icon">
+            <svg width="32" height="32" viewBox="0 0 40 40" fill="none"><rect x="6" y="6" width="12" height="12" stroke="#c8a96e" stroke-width="1"/><rect x="22" y="6" width="12" height="12" stroke="#c8a96e" stroke-width="1"/><rect x="6" y="22" width="12" height="12" stroke="#c8a96e" stroke-width="1"/><rect x="22" y="22" width="12" height="12" stroke="#c8a96e" stroke-width="1"/></svg>
+          </div>
+          <h3 id="srv4Title">תכנון עירוני</h3>
+          <p id="srv4Desc">תכנון מתחמים ושכונות תוך שמירה על קשר לסביבה ולקהילה.</p>
+          <div class="service-num">04</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section class="testimonials-section">
+    <div class="testimonials-inner">
+      <div class="section-header reveal" style="text-align:center">
+        <div class="section-label" style="justify-content:center;display:flex">לקוחות מספרים</div>
+        <h2 class="section-title">מה אומרים עלינו</h2>
+      </div>
+      <div class="testimonials-track" id="testimonialsTrack">
+        <div class="testimonial-card">
+          <div class="testimonial-quote">״</div>
+          <p>אביטל הפכה את החלום שלנו לבית אמיתי. הגישה המקצועית והאישית שלה הפתיעה אותנו לטובה בכל שלב.</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">מ</div>
+            <div><strong>משפחת כהן</strong><span>בית פרטי, הרצליה</span></div>
+          </div>
+        </div>
+        <div class="testimonial-card">
+          <div class="testimonial-quote">״</div>
+          <p>עיצוב הפנים שקיבלנו עלה על כל הציפיות. כל פרט חשב מראש, כל חומר נבחר בקפידה.</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">ד</div>
+            <div><strong>דנה לוי</strong><span>דירה בתל אביב</span></div>
+          </div>
+        </div>
+        <div class="testimonial-card">
+          <div class="testimonial-quote">״</div>
+          <p>שיתוף הפעולה עם הסטודיו היה חוויה מדהימה. מקצועיות ברמה הגבוהה ביותר.</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">א</div>
+            <div><strong>אלון ברק</strong><span>מרכז קהילתי, תל אביב</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonials-dots" id="testimonialsDots"></div>
+    </div>
+  </section>
+
+  <!-- IMAGE STRIP -->
+  <div class="img-strip" id="imgStrip">
+    <div class="strip-item"><img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=600&q=80" alt="" /></div>
+    <div class="strip-item"><img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=600&q=80" alt="" /></div>
+    <div class="strip-item"><img src="https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?w=600&q=80" alt="" /></div>
+    <div class="strip-item"><img src="https://images.unsplash.com/photo-1493809842364-78817add7ffb?w=600&q=80" alt="" /></div>
+    <div class="strip-item"><img src="https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?w=600&q=80" alt="" /></div>
+  </div>
+
+  <!-- CONTACT -->
+  <section id="contact" class="contact-section">
+    <div class="contact-inner">
+      <div class="contact-left reveal-right">
+        <div class="section-label" id="contactSectionLabel">03 — צור קשר</div>
+        <h2 id="contactTitle">מוכנים<br/><em>להתחיל?</em></h2>
+        <p id="contactSubtitle">מעוניינים בשיתוף פעולה? נשמח לשמוע על הפרויקט שלכם</p>
+        <div class="contact-info">
+          <div class="info-item">
+            <span class="info-icon">◎</span>
+            <a id="contactEmail" href="mailto:studio@avital-arch.co.il">studio@avital-arch.co.il</a>
+          </div>
+          <div class="info-item">
+            <span class="info-icon">◎</span>
+            <span id="contactPhone"></span>
+          </div>
+          <div class="info-item">
+            <span class="info-icon">◎</span>
+            <span id="contactAddress">תל אביב, ישראל</span>
+          </div>
+        </div>
+        <div class="social-links" id="socialLinks"></div>
+      </div>
+      <div class="contact-right reveal-left">
+        <form class="contact-form" onsubmit="handleSubmit(event)">
+          <div class="form-row">
+            <div class="form-group">
+              <input type="text" id="cName" placeholder=" " required />
+              <label>שם מלא</label>
+            </div>
+            <div class="form-group">
+              <input type="email" id="cEmail" placeholder=" " required />
+              <label>אימייל</label>
+            </div>
+          </div>
+          <div class="form-group">
+            <input type="text" id="cSubject" placeholder=" " />
+            <label>נושא</label>
+          </div>
+          <div class="form-group">
+            <textarea id="cMsg" rows="5" placeholder=" " required></textarea>
+            <label>תיאור הפרויקט</label>
+          </div>
+          <button type="submit" class="btn btn-gold btn-full" id="contactBtnText">שלח הודעה →</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-logo" id="footerLogo">אביטל | ARCHITECTURE</div>
+      <p id="footerCopy">© 2025 כל הזכויות שמורות</p>
+      <div class="footer-links">
+        <a href="#projects">פרויקטים</a>
+        <a href="#about">אודות</a>
+        <a href="#contact">צור קשר</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- AI CHATBOT -->
+  <div class="chatbot-btn" id="chatbotBtn" title="שאל אותי">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+      <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" stroke="#c8a96e" stroke-width="1.5" fill="none"/>
+      <circle cx="9" cy="10" r="1" fill="#c8a96e"/>
+      <circle cx="12" cy="10" r="1" fill="#c8a96e"/>
+      <circle cx="15" cy="10" r="1" fill="#c8a96e"/>
+    </svg>
+    <div class="chatbot-btn-badge"></div>
+  </div>
+
+  <div class="chatbot-window" id="chatbotWindow">
+    <div class="chatbot-header">
+      <div class="chatbot-avatar">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+          <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" fill="#c8a96e" opacity="0.3" stroke="#c8a96e" stroke-width="1.2"/>
+        </svg>
+        <div class="chatbot-avatar-dot"></div>
+      </div>
+      <div>
+        <div class="chatbot-name" id="chatbotName">אביטל — עוזרת וירטואלית</div>
+        <div class="chatbot-status">● מחוברת עכשיו</div>
+      </div>
+      <button class="chatbot-close" id="chatbotClose">✕</button>
+    </div>
+    <div class="chatbot-messages" id="chatbotMessages">
+      <div class="chat-msg bot">
+        <span id="chatbotGreeting">שלום! 👋 אני העוזרת הווירטואלית של הסטודיו.<br>אשמח לענות על שאלות לגבי <strong>שירותים, מחירים, פרויקטים</strong> ועוד.</span>
+      </div>
+    </div>
+    <div class="chatbot-suggestions" id="chatbotSuggestions">
+      <span class="chatbot-suggestions-label">שאלות נפוצות</span>
+      <button onclick="sendSuggestion('מה השירותים שלכם?')">השירותים שלנו</button>
+      <button onclick="sendSuggestion('כמה עולה פרויקט?')">מחירים</button>
+      <button onclick="sendSuggestion('איך מתחילים?')">איך מתחילים?</button>
+      <button onclick="sendSuggestion('כמה זמן לוקח?')">משך זמן</button>
+    </div>
+    <div class="chatbot-input-wrap">
+      <input type="text" id="chatbotInput" placeholder="כתוב שאלה..." />
+      <button id="chatbotSend">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none">
+          <line x1="22" y1="2" x2="11" y2="13" stroke="#c8a96e" stroke-width="2"/>
+          <polygon points="22 2 15 22 11 13 2 9 22 2" stroke="#c8a96e" stroke-width="1.5" fill="none"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <script src="imgdb.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+  <script>emailjs.init('Msl7gvtuWwferlS3G');</script>
+  <script src="projects.js"></script>
+</body>
+</html>
